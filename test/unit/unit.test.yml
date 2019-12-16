@@ -1,0 +1,38 @@
+---
+configuration:
+    locale: en-US
+    dynamo: mock
+    userId: mockUserID
+
+---
+- test: invocation test
+- open christ church: Welcome to the Christ Church Skill. You can say play the latest sermon, list sermons, or main menu.
+
+---
+- test: Launch request, then test main menu.
+- LaunchRequest:
+    - response.outputSpeech.ssml: Welcome to the Christ Church Skill. You can say play the latest sermon, list sermons, or main menu.
+    - response.reprompt.outputSpeech.ssml: Would you like me to play the latest sermon?
+    - response.shouldEndSession: false
+- SessionEndedRequest:
+    - response.outputSpeech: undefined
+
+---
+- test: MainMenuIntent and exit
+- open christ church:
+- main menu: 'Main Menu options are: Latest Sermons.'
+#    - response.outputSpeech.ssml: Main Menu options are, Latest Sermons.
+#    - response.reprompt.outputSpeech.ssml: Would you like me to play the latest sermon?
+#    - response.shouldEndSession: false
+
+---
+- test: Upcoming Events Test
+- upcoming events: Upcoming Events at Christ Church are, No upcoming events found.
+
+---
+- test: List Sermons Test
+- list sermons: The Latest Sermons are 1. Sermon One 2. Sermon Two 3. Sermon Three. Which would you like to play?
+
+---
+- test: Latest Sermon Test
+- what is the latest sermon: The latest sermon is

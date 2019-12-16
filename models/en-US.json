@@ -1,0 +1,148 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "christ church",
+      "intents": [
+        {
+          "name": "MainMenuIntent",
+          "slots": [],
+          "samples": [
+            "go to the main menu",
+            "go to main menu",
+            "go to menu",
+            "main menu",
+            "menu"
+          ]
+        },
+        {
+          "name": "UpcomingEventsIntent",
+          "slots": [],
+          "samples": [
+            "upcoming events",
+            "events",
+            "upcoming"
+          ]
+        },
+        {
+          "name": "ListSermonsIntent",
+          "slots": [],
+          "samples": [
+            "list sermons",
+            "list latest sermons",
+            "sermons",
+            "list"
+          ]
+        },
+        {
+          "name": "LatestSermonIntent",
+          "slots": [],
+          "samples": [
+            "what is the latest sermon",
+            "tell me the latest sermon"
+          ]
+        },
+        {
+          "name": "ContactInformationIntent",
+          "slots": [],
+          "samples": [
+            "contact information",
+            "contact info",
+            "contact"
+          ]
+        },
+        {
+          "name": "ServiceTimesIntent",
+          "slots": [],
+          "samples": [
+            "services",
+            "times",
+            "service times"
+          ]
+        },
+        {
+          "name": "PlayLatestSermonIntent",
+          "slots": [],
+          "samples": [
+            "and play the latest sermon",
+            "play the latest sermon",
+            "play latest sermon",
+            "and play latest",
+            "play latest",
+            "play sermon",
+            "begin the latest sermon",
+            "begin latest sermon",
+            "begin latest",
+            "start latest sermon",
+            "latest sermon",
+            "and start sermon",
+            "start sermon",
+            "latest",
+            "sermon"
+          ]
+        },
+        {
+          "name": "PlaySermonByIndexIntent",
+          "slots": [
+            {
+              "name": "Index",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "play sermon {Index}",
+            "play {Index}",
+            "sermon {Index}",
+            "{Index}"
+          ]
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": [
+            "resume",
+            "resume sermon",
+            "remume playing",
+            "resume playing sermon"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NextIntent",
+          "samples": [
+            "next sermon",
+            "next set of sermons",
+            "more sermons",
+            "hear more sermons"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": []
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "name": "christ-church-skill",
+    "version": "1.0.0",
+    "description": "A skill to play sermons for Christ Church",
+    "main": "index.js",
+    "scripts": {
+        "test": "AWS_REGION=us-east-1 mocha test",
+        "bst": "bst test"
+    },
+    "keywords": [
+        "alexa",
+        "skill"
+    ],
+    "author": "Patrick Lang",
+    "license": "None",
+    "dependencies": {
+        "ask-sdk": "^2.7.0",
+        "feedparser": "1.1.4",
+        "html-entities": "1.2.0",
+        "htmlparser2": "3.9.2",
+        "request": "^2.88.0",
+        "striptags": "2.1.1"
+    },
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "chai-string": "^1.4.0",
+        "mocha": "^5.0.5"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plang1997/skill-test"
+    }
+}
