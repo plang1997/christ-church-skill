@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "christ church",
+      "invocationName": "new christ church",
       "intents": [
         {
           "name": "MainMenuIntent",
@@ -60,6 +60,21 @@
           ]
         },
         {
+          "name": "AMAZON.CancelIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
           "name": "PlayLatestSermonIntent",
           "slots": [],
           "samples": [
@@ -77,7 +92,22 @@
             "and start sermon",
             "start sermon",
             "latest",
-            "sermon"
+            "sermon",
+            "begin sermon",
+            "begin the sermon",
+            "begin playing the sermon",
+            "start sermon",
+            "start the sermon",
+            "start playing the sermon",
+            "play the sermon",
+            "to play",
+            "to begin sermon",
+            "to begin the sermon",
+            "to begin playing the sermon",
+            "to start sermon",
+            "to start the sermon",
+            "to start playing the sermon",
+            "to play the sermon"
           ]
         },
         {
@@ -89,7 +119,11 @@
             }
           ],
           "samples": [
+            "start sermon {Index}",
+            "start the sermon {Index}",
+            "start {Index}",
             "play sermon {Index}",
+            "play the sermon {Index}",
             "play {Index}",
             "sermon {Index}",
             "{Index}"
@@ -97,45 +131,38 @@
         },
         {
           "name": "AMAZON.PauseIntent",
+          "slots": [],
           "samples": []
         },
         {
           "name": "AMAZON.ResumeIntent",
-          "samples": [
-            "resume",
-            "resume sermon",
-            "remume playing",
-            "resume playing sermon"
-          ]
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PreviousIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StartOverIntent",
+          "slots": [],
+          "samples": []
         },
         {
           "name": "AMAZON.YesIntent",
+          "slots": [],
           "samples": []
         },
         {
           "name": "AMAZON.NoIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
+          "slots": [],
           "samples": []
         },
         {
           "name": "AMAZON.NextIntent",
-          "samples": [
-            "next sermon",
-            "next set of sermons",
-            "more sermons",
-            "hear more sermons"
-          ]
+          "slots": [],
+          "samples": []
         },
         {
           "name": "AMAZON.NavigateHomeIntent",

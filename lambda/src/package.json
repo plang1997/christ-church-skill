@@ -1,5 +1,5 @@
 {
-    "name": "christ-church-skill",
+    "name": "new-christ-church-skill",
     "version": "1.0.0",
     "description": "A skill to play sermons for Christ Church",
     "main": "index.js",
@@ -15,7 +15,9 @@
     "license": "None",
     "dependencies": {
         "ask-sdk": "^2.7.0",
+        "ask-sdk-dynamodb-persistence-adapter": "^2.7.0",
         "feedparser": "1.1.4",
+        "feedparser-promised": "^2.0.1",
         "html-entities": "1.2.0",
         "htmlparser2": "3.9.2",
         "request": "^2.88.0",

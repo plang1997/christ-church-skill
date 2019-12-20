@@ -17,22 +17,111 @@ configuration:
 - SessionEndedRequest:
     - response.outputSpeech: undefined
 
----
-- test: MainMenuIntent and exit
-- open christ church:
-- main menu: 'Main Menu options are: Latest Sermons.'
-#    - response.outputSpeech.ssml: Main Menu options are, Latest Sermons.
-#    - response.reprompt.outputSpeech.ssml: Would you like me to play the latest sermon?
-#    - response.shouldEndSession: false
+#---
+#- test: MainMenuIntent and exit
+#- open new christ church:
+#- main menu: 'Main Menu options are: Latest Sermons, Upcoming Events.'
+##    - response.outputSpeech.ssml: Main Menu options are, Latest Sermons.
+##    - response.reprompt.outputSpeech.ssml: Would you like me to play the latest sermon?
+##    - response.shouldEndSession: false
+#
+#---
+#- test: Upcoming Events Test
+#- upcoming events: Upcoming Events at Christ Church are, No upcoming events found.
+#
+#---
+#- test: List Sermons Test
+#- list sermons: 'The last three sermons are  1<break time = "100ms"/>The Coming King<break time = "200ms"/>2<break time = "100ms"/>Let Every Heart Prepare Him Room<break time = "200ms"/>3<break time = "100ms"/>No More Let Sins and Sorrows Grow<break time = "200ms"/> Which one would you like to hear?'
+#
+#---
+#- test: Latest Sermon Test
+#- what is the latest sermon: The latest sermon is The Coming King
 
----
-- test: Upcoming Events Test
-- upcoming events: Upcoming Events at Christ Church are, No upcoming events found.
+#---
+#- test: Launch request and start playing audio.
+#- PlayLatestSermonIntent:
+#      - response.outputSpeech.ssml: This is The Coming King
+#      - response.directives[0].type: AudioPlayer.Play # this is equivalent to $..type JSONPath
+#      - $..playBehavior: REPLACE_ALL
+#      - $..audioItem.stream.url: "https://clovermedia.s3-us-west-2.amazonaws.com/store/b20a63f3-f8f6-49c0-937f-5ee6c806bf69/e0a111a9e3/audio.mp3"
+#      - response.shouldEndSession: true
+#- AMAZON.StopIntent:
+#      - response.directives[0].type: AudioPlayer.Stop
+#- AMAZON.ResumeIntent: This is The Coming King
+#
+#---
+#- test: Pause audio and resume.
+#- LaunchRequest: You were listening to The Coming King. Would you like to resume?
+#- PlayLatestSermonIntent
+#- AMAZON.PauseIntent # No output is returned
+#- AMAZON.ResumeIntent: This is The Coming King
+#- AMAZON.StopIntent:
+#      - response.directives[0].type: AudioPlayer.Stop
+#
+#--- # This sequence works fine with an echo device, resume after cancel fails with skill-tester
+#- test: Cancel.
+#- LaunchRequest: You were listening to The Coming King. Would you like to resume?
+#- PlayLatestSermonIntent
+#- AMAZON.CancelIntent: # No output is returned, but given the code it should say Goodbye!
+#      - response.directives[0].type: AudioPlayer.Stop
+#- AMAZON.ResumeIntent: This is The Coming King
+#- AMAZON.StopIntent:
+#      - response.directives[0].type: AudioPlayer.Stop
+#
+#---
+#- test: Start audio, next track, previous track, stop.
+#- LaunchRequest: You were listening to The Coming King. Would you like to resume?
+#- PlayLatestSermonIntent
+#- AMAZON.NextIntent: This is Let Every Heart Prepare Him Room
+#- AMAZON.PreviousIntent: This is The Coming King
+#- AMAZON.NextIntent: This is Let Every Heart Prepare Him Room
+#- AMAZON.StopIntent:
+#      - response.directives[0].type: AudioPlayer.Stop
 
----
-- test: List Sermons Test
-- list sermons: The Latest Sermons are 1. Sermon One 2. Sermon Two 3. Sermon Three. Which would you like to play?
-
----
-- test: Latest Sermon Test
-- what is the latest sermon: The latest sermon is
+#---
+#- test: Persistence with DynamoDB.
+#- LaunchRequest: You were listening to Let Every Heart Prepare Him Room. Would you like to resume?
+#- PlayLatestSermonIntent:
+#      - $..audioItem.stream.url: "https://clovermedia.s3-us-west-2.amazonaws.com/store/b20a63f3-f8f6-49c0-937f-5ee6c806bf69/07f9bf0f0a/audio.mp3"
+#- AMAZON.NextIntent:
+#      - response.outputSpeech.ssml: This is No More Let Sins and Sorrows Grow #You have reached the end of the playlist
+#      - response.shouldEndSession: true
+#      - response.directives[0].type: AudioPlayer.Play
+#
+#---
+#- test: Handles AMAZON.ShuffleOnIntent.
+#- LaunchRequest
+#- PlayLatestSermonIntent
+#- AMAZON.ShuffleOnIntent: This is The Coming King
+#
+#---
+#- test: Handles AMAZON.ShuffleOffIntent.
+#- LaunchRequest
+#- PlayLatestSermonIntent
+#- AMAZON.ShuffleOffIntent: This is The Coming King
+#
+#---
+#- test: Handles AMAZON.LoopOnIntent.
+#- LaunchRequest
+#- PlayLatestSermonIntent
+#- AMAZON.LoopOnIntent: Sorry, this is not a valid command.
+#
+#---
+#- test: Handles AMAZON.LoopOffIntent.
+#- LaunchRequest
+#- PlayLatestSermonIntent
+#- AMAZON.LoopOffIntent: Sorry, this is not a valid command.
+#
+#---
+#- test: Start audio, previous track till the beginning of the list
+#- LaunchRequest
+#- PlayLatestSermonIntent
+#- AMAZON.PreviousIntent
+#- AMAZON.PreviousIntent: You have reached the start of the playlist
+#
+#---
+#- test: Start audio, next track till the end of the list
+#- LaunchRequest
+#- PlayLatestSermonIntent
+#- AMAZON.NextIntent
+#- AMAZON.NextIntent: This is No More Let Sins and Sorrows Grow #You have reached the end of the playlist

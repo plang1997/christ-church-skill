@@ -1,0 +1,33 @@
+{
+  "deploy_settings": {
+    "default": {
+      "skill_id": "amzn1.ask.skill.5c74934b-ed7f-4361-885b-7dcba106bc12",
+      "was_cloned": false,
+      "merge": {},
+      "resources": {
+        "manifest": {
+          "eTag": "e7b5c2787b17a724f8cde0ae303d1940"
+        },
+        "interactionModel": {
+          "en-US": {
+            "eTag": "1982738c21596ea6e672cd0ca982468a"
+          }
+        },
+        "lambda": [
+          {
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "arn": "arn:aws:lambda:us-east-1:242068192840:function:ask-custom-skill-christ-church-default",
+            "awsRegion": "us-east-1",
+            "codeUri": "lambda/src",
+            "functionName": "ask-custom-skill-christ-church-default",
+            "handler": "index.handler",
+            "revisionId": "f3cc5e00-8ddb-435f-b745-86c8901c15fb",
+            "runtime": "nodejs8.10"
+          }
+        ]
+      }
+    }
+  }
+}
